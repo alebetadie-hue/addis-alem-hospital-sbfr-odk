@@ -1,0 +1,207 @@
+{
+  "form_metadata": {
+    "form_id": "FORM_PATIENT_INTAKE_001",
+    "form_name": "Patient Intake Form",
+    "form_version": "1.0",
+    "created_date": "2026-09-15",
+    "last_modified": "2026-09-15",
+    "organization": "Addis Alem Hospital SBFR Team",
+    "language": "English",
+    "status": "active"
+  },
+  "form_sections": [
+    {
+      "section_id": "SECTION_001",
+      "section_name": "Patient Demographics",
+      "section_order": 1,
+      "fields": [
+        {
+          "field_id": "F_001",
+          "field_name": "Patient ID",
+          "field_type": "text",
+          "required": true,
+          "format": "PAT_[6 digits]",
+          "validation_rule": "must_start_with_PAT",
+          "help_text": "Unique patient identifier"
+        },
+        {
+          "field_id": "F_002",
+          "field_name": "Full Name",
+          "field_type": "text",
+          "required": true,
+          "max_length": 100,
+          "validation_rule": "name_format",
+          "help_text": "Patient's full name (First Middle Last)"
+        },
+        {
+          "field_id": "F_003",
+          "field_name": "Date of Birth",
+          "field_type": "date",
+          "required": true,
+          "format": "YYYY-MM-DD",
+          "validation_rule": "valid_date",
+          "help_text": "Patient's date of birth"
+        },
+        {
+          "field_id": "F_004",
+          "field_name": "Age",
+          "field_type": "number",
+          "required": true,
+          "min": 0,
+          "max": 120,
+          "validation_rule": "consistent_with_dob",
+          "help_text": "Patient's age in years"
+        },
+        {
+          "field_id": "F_005",
+          "field_name": "Gender",
+          "field_type": "select",
+          "required": true,
+          "options": ["Male", "Female", "Other"],
+          "validation_rule": "must_select_one",
+          "help_text": "Patient's gender"
+        }
+      ]
+    },
+    {
+      "section_id": "SECTION_002",
+      "section_name": "Contact Information",
+      "section_order": 2,
+      "fields": [
+        {
+          "field_id": "F_006",
+          "field_name": "Phone Number",
+          "field_type": "phone",
+          "required": true,
+          "format": "+251[9][0-9]{8}",
+          "validation_rule": "valid_phone",
+          "help_text": "Patient's primary phone number"
+        },
+        {
+          "field_id": "F_007",
+          "field_name": "Email Address",
+          "field_type": "email",
+          "required": false,
+          "validation_rule": "valid_email",
+          "help_text": "Patient's email address (optional)"
+        },
+        {
+          "field_id": "F_008",
+          "field_name": "Address",
+          "field_type": "text",
+          "required": true,
+          "max_length": 200,
+          "validation_rule": "non_empty",
+          "help_text": "Patient's residential address"
+        },
+        {
+          "field_id": "F_009",
+          "field_name": "City/Town",
+          "field_type": "text",
+          "required": true,
+          "max_length": 50,
+          "validation_rule": "non_empty",
+          "help_text": "Patient's city or town"
+        }
+      ]
+    },
+    {
+      "section_id": "SECTION_003",
+      "section_name": "Visit Information",
+      "section_order": 3,
+      "fields": [
+        {
+          "field_id": "F_010",
+          "field_name": "Visit Date",
+          "field_type": "date",
+          "required": true,
+          "format": "YYYY-MM-DD",
+          "validation_rule": "not_future_date",
+          "help_text": "Date of current visit"
+        },
+        {
+          "field_id": "F_011",
+          "field_name": "Visit Type",
+          "field_type": "select",
+          "required": true,
+          "options": ["New Patient", "Follow-up", "Emergency", "Referral"],
+          "validation_rule": "must_select_one",
+          "help_text": "Type of visit"
+        },
+        {
+          "field_id": "F_012",
+          "field_name": "Presenting Complaint",
+          "field_type": "text",
+          "required": true,
+          "max_length": 500,
+          "validation_rule": "non_empty",
+          "help_text": "Patient's main complaint or reason for visit"
+        },
+        {
+          "field_id": "F_013",
+          "field_name": "Insurance Information",
+          "field_type": "text",
+          "required": false,
+          "max_length": 100,
+          "validation_rule": "optional",
+          "help_text": "Insurance provider and policy number (if applicable)"
+        }
+      ]
+    },
+    {
+      "section_id": "SECTION_004",
+      "section_name": "Form Completion",
+      "section_order": 4,
+      "fields": [
+        {
+          "field_id": "F_014",
+          "field_name": "Collector Name",
+          "field_type": "text",
+          "required": true,
+          "max_length": 100,
+          "validation_rule": "non_empty",
+          "help_text": "Name of person collecting data"
+        },
+        {
+          "field_id": "F_015",
+          "field_name": "Collector ID",
+          "field_type": "text",
+          "required": true,
+          "format": "COL_[4 digits]",
+          "validation_rule": "valid_staff_id",
+          "help_text": "Staff ID of data collector"
+        },
+        {
+          "field_id": "F_016",
+          "field_name": "Completion Date",
+          "field_type": "date",
+          "required": true,
+          "format": "YYYY-MM-DD",
+          "validation_rule": "not_future_date",
+          "help_text": "Date form was completed"
+        },
+        {
+          "field_id": "F_017",
+          "field_name": "Collector Signature",
+          "field_type": "text",
+          "required": true,
+          "validation_rule": "non_empty",
+          "help_text": "Signature or initials of data collector"
+        }
+      ]
+    }
+  ],
+  "validation_rules": {
+    "all_required_fields_must_be_completed": true,
+    "dates_must_be_realistic": true,
+    "phone_format_must_be_valid": true,
+    "age_must_match_dob": true,
+    "no_future_dates_allowed": true
+  },
+  "form_instructions": {
+    "general": "Please complete all required fields marked with an asterisk (*). Use black or blue pen for paper forms. Print clearly and legibly.",
+    "date_format": "Use YYYY-MM-DD format (e.g., 2026-09-15)",
+    "phone_format": "Use format +251 followed by area code and number",
+    "names": "Use proper case (e.g., John Smith, not JOHN SMITH or john smith)"
+  }
+}
